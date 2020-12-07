@@ -1,0 +1,11 @@
+STUDENT NAME                   AVERAGE PROGRAM NAME        TUITION OWED
+NES, WILLIAM                          CO  034    CSTXY                     500.00
+ITH, FRED                             CO  034    CSTXY                       0.3=
+OMWELL, OLIVER                        CO  034    CSTXY                   2,000.32
+HEINLEN, HERBERT                      CO  034    CSTXY                       0.85
+SIMOV, ISAAC                          CO  726    CSTXY                   5,000.13
+NES, WILLIAM                          CO  034    CSTXY                       0.:?
+ITH, Bill                             CO  034    CSTXY                       0.3=
+OMWELL, OLIVIA                        CO  034    CSTXY                   2,000.32
+HEINLEN, HERBERT                      CO  034    CSTXY                       0.85
+SIMOV, ISAAC                          CO  726    CSTXY                      50.00
