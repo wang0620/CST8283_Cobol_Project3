@@ -11,7 +11,7 @@
                ALTERNATE RECORD KEY IS IND-TUITION-OWED WITH            
                DUPLICATES.
        SELECT PROGRAM-FILE-IN
-           ASSIGN TO "C:\Users\Administrator\Downloads\PROGRAM.TXT"
+           ASSIGN TO "C:\Users\Administrator\Downloads\PROGRAM.txt"
                ORGANIZATION IS LINE SEQUENTIAL.
        SELECT STUDENT-REPORT-OUT
            ASSIGN TO 
@@ -25,7 +25,7 @@
        FD INDEXED-STUDENT-FILE-IN.
        01 INDEXED-FILE-RECORD.
            05 IND-STUDENT-NUMBER  PIC 9(6).
-           05 IND-TUITION-OWED    PIC 9(6)V99.
+           05 IND-TUITION-OWED    PIC 9(4)V99.
            05 IND-STUDENT-NAME    PIC X(40).
            05 IND-PROGRAM-OF-STUDY    PIC X(5).
            05 IND-COURSE-CODE-1   PIC X(7).
@@ -39,9 +39,9 @@
            05 IND-COURSE-CODE-5   PIC X(7).
            05 IND-AVERAGE-5       PIC 9(3).
        FD PROGRAM-FILE-IN.
-       01 COURSE-RECORD.
-         05 COURSE-CODE PIC X(5).
-         05 COURSE-NAME PIC X(20).
+       01 PROGRAM-RECORD.
+         05 PORGRAM-CODE-IN PIC X(5).
+         05 PROGRAM-NAME-IN PIC X(20).
        FD STUDENT-REPORT-OUT.
        01 STUDENT-REPORT-RECORD-OUT PIC X(81).
        
@@ -94,6 +94,7 @@
            PERFORM 304-WRITE-COLUMN-HDR.
        
        202-PRODUCE-ONE-STUDENT-REPORT.
+           MOVE "NO" TO FOUND-FLAG.
            PERFORM 306-CALCULATE-AVERAGE.
            PERFORM 307-SEARCH-PROGRAM-NAME
                VARYING SUB FROM 1 BY 1
@@ -114,15 +115,18 @@
        302-LOAD-PROGRAM-TBL.
            READ PROGRAM-FILE-IN
                AT END MOVE "YES" TO EOF-FLAG-TBL
-                      NOT AT END MOVE COURSE-RECORD
+                      NOT AT END MOVE PROGRAM-RECORD
                                    TO PROGRAM-TBL-RECORD(SUB).
+       
        304-WRITE-COLUMN-HDR.
            WRITE STUDENT-REPORT-RECORD-OUT FROM COLUMN-HEADER.
        
        305-READ-STUDENT-RECORD.
            READ INDEXED-STUDENT-FILE-IN
                AT END MOVE "YES" TO EOF-FLAG
-                      NOT AT END ADD 1 TO READ-COUNTER.
+                      NOT AT END ADD 1 TO READ-COUNTER
+                           DISPLAY IND-STUDENT-NUMBER 
+                           IND-PROGRAM-OF-STUDY.
        
        306-CALCULATE-AVERAGE.
            COMPUTE STUDENT-AVERAGE-OUT
@@ -130,10 +134,12 @@
              IND-AVERAGE-4 + IND-AVERAGE-5) / 5.
        
        307-SEARCH-PROGRAM-NAME.
-           MOVE "NO" TO FOUND-FLAG.
-           IF COURSE-CODE = PROGRAM-CODE-TBL(SUB)
+           
+           IF IND-PROGRAM-OF-STUDY = PROGRAM-CODE-TBL(SUB)
                MOVE "YES" TO FOUND-FLAG
-               MOVE PROGRAM-CODE-TBL(SUB) TO PROGRAM-NAME-OUT
+               MOVE PROGRAM-NAME-TBL(SUB) TO PROGRAM-NAME-OUT
+           ELSE
+               MOVE "NO" TO FOUND-FLAG
            END-IF.
        
        308-WRITE-STUDENT-REPORT.

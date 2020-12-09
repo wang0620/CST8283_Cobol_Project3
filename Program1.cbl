@@ -8,7 +8,7 @@
        SELECT INDEXED-STUDENT-FILE-OUT
            ASSIGN TO "C:\Users\Administrator\Downloads\STUFILE4.TXT"
                ORGANIZATION IS INDEXED
-               ACCESS IS DYNAMIC
+               ACCESS IS SEQUENTIAL
                RECORD KEY IS IND-STUDENT-NUMBER
                ALTERNATE RECORD KEY IS IND-TUITION-OWED WITH 
                DUPLICATES.
@@ -19,7 +19,7 @@
        FD STUDENT-FILE-IN.
        01 STUDENT-RECORD-IN.
            05 STUDENT-NUMBER  PIC 9(6).
-           05 TUITION-OWED    PIC 9(6)V99.
+           05 TUITION-OWED    PIC 9(4)V99.
            05 STUDENT-NAME    PIC X(40).
            05 PROGRAM-OF-STUDY    PIC X(5).
            05 COURSE-CODE-1   PIC X(7).
@@ -36,7 +36,7 @@
        FD INDEXED-STUDENT-FILE-OUT.
        01 INDEXED-FILE-RECORD.
            05 IND-STUDENT-NUMBER  PIC 9(6).
-           05 IND-TUITION-OWED    PIC 9(6)V99.
+           05 IND-TUITION-OWED    PIC 9(4)V99.
            05 IND-STUDENT-NAME    PIC X(40).
            05 IND-PROGRAM-OF-STUDY    PIC X(5).
            05 IND-COURSE-CODE-1   PIC X(7).
@@ -52,6 +52,7 @@
        
        working-storage section.
        01 EOF-FLAG PIC X(3) VALUE "NO".
+       01 WRITE-COUNTER PIC 9(3) VALUE ZERO.
 
        procedure division.
        100-CONVERT-STUDENT-FILE.
@@ -99,13 +100,17 @@
        303-WRITE-INDEXED-RECORD.
            WRITE INDEXED-FILE-RECORD
                INVALID KEY PERFORM 700-RECORD-ERROR-RTN
+                           NOT INVALID KEY DISPLAY 
+                           "WRITE STATEMENT EXECUTED FOR "
+                           STUDENT-RECORD-IN
+                           DISPLAY " "
+                           ADD 1 TO WRITE-COUNTER
            END-WRITE.
-           DISPLAY "WRITE STATEMENT EXECUTED FOR "
-           STUDENT-RECORD-IN
-           DISPLAY " ".
+
        
        304-CLOSE-STUDENT-FILE.
            CLOSE STUDENT-FILE-IN INDEXED-STUDENT-FILE-OUT.
+           DISPLAY WRITE-COUNTER.
        
        700-RECORD-ERROR-RTN.
            DISPLAY "RECORD ERROR".

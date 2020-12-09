@@ -16,7 +16,7 @@
        FD STUDENT-FILE.
        01 INDEXED-FILE-RECORD.
            05 IND-STUDENT-NUMBER  PIC 9(6).
-           05 IND-TUITION-OWED    PIC 9(6)V99.
+           05 IND-TUITION-OWED    PIC 9(4)V99.
            05 IND-STUDENT-NAME    PIC X(40).
            05 IND-PROGRAM-OF-STUDY    PIC X(5).
            05 IND-COURSE-CODE-1   PIC X(7).
