@@ -1,11 +1,11 @@
 STUDENT NAME                   AVERAGE PROGRAM NAME        TUITION OWED
-NES, WILLIAM                          CO  034    CSTXY                     500.00
-ITH, FRED                             CO  034    CSTXY                       0.3=
-OMWELL, OLIVER                        CO  034    CSTXY                   2,000.32
-HEINLEN, HERBERT                      CO  034    CSTXY                       0.85
-SIMOV, ISAAC                          CO  726    CSTXY                   5,000.13
-NES, WILLIAM                          CO  034    CSTXY                       0.:?
-ITH, Bill                             CO  034    CSTXY                       0.3=
-OMWELL, OLIVIA                        CO  034    CSTXY                   2,000.32
-HEINLEN, HERBERT                      CO  034    CSTXY                       0.85
-SIMOV, ISAAC                          CO  726    CSTXY                      50.00
+JONES, WILLIAM                            090    COMPUTER PRGRAMMER        500.00
+SMITH, FRED                               082    COMPUTER TECHNICIAN     2,000.00
+CROMWELL, OLIVER                          070    COMPUTER SIENCE           920.00
+HEHEINLEN, HERBERT                        090    COMPUTER PRGRAMMER      1,500.00
+ASSIMOV, ISAAC                            047    COMPUTER PRGRAMMER         50.00
+JONES, WILLIAM                            090    COMPUTER PRGRAMMER      1,000.00
+SMITH, Bill                               082    COMPUTER TECHNICIAN     2,000.00
+CROMWELL, OLIVIA                          070    COMPUTER SIENCE           920.00
+HEHEINLEN, HERBERT                        090    COMPUTER PRGRAMMER      1,500.00
+ASSIMOV, ISAAC                            047    COMPUTER PRGRAMMER         50.00
